@@ -16,7 +16,9 @@ export const AddForm = ({ todoList, task, setTodoList, setTask }: Props) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    const newTask = { taskName: task, isChecked: false };
+    let newId = 0;
+    if (todoList.length > 0) newId = todoList[todoList.length - 1]["id"] + 1;
+    const newTask = { id: newId, taskName: task, isChecked: false };
     setTodoList([...todoList, newTask]);
     setTask("");
   };

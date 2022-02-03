@@ -24,11 +24,9 @@ export const TodoList = ({
         return (
           <Todo
             key={i}
-            task={task}
             todo={todo}
             todoList={todoList}
             setTodoList={setTodoList}
-            isCompleted={isCompleted}
           />
         );
       })}
