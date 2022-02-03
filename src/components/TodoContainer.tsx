@@ -7,7 +7,6 @@ import { ITask } from "../Interfaces";
 
 export const TodoContainer = () => {
   const [task, setTask] = useState("");
-  const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [todoList, setTodoList] = useState<ITask[]>([]);
 
   return (
@@ -18,7 +17,6 @@ export const TodoContainer = () => {
         setTask={setTask}
         task={task}
         todoList={todoList}
-        isCompleted={isCompleted}
       />
       <TodoAdd
         setTodoList={setTodoList}

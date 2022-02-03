@@ -11,10 +11,23 @@ interface Props {
 }
 
 export const TodoAdd = ({ setTodoList, setTask, task, todoList }: Props) => {
+  const completedCount = todoList.filter(
+    (todo) => todo.isChecked === true
+  ).length;
   return (
     <>
       <AddBox>
-        <TaskCount>0 Tasks</TaskCount>
+        {todoList.length > 0 ? (
+          todoList.length > completedCount ? (
+            <TaskCount>
+              Todo {todoList.length}개 중 {completedCount}개 완료
+            </TaskCount>
+          ) : (
+            <TaskCount>오늘의 Todo 완료 !</TaskCount>
+          )
+        ) : (
+          <TaskCount />
+        )}
         <BtnLabel htmlFor="add-btn">ADD NEW +</BtnLabel>
         <AddBtn id="add-btn" />
       </AddBox>
@@ -37,7 +50,11 @@ const AddBox = styled.div`
   padding: 0 5%;
 `;
 
-const TaskCount = styled.span``;
+const TaskCount = styled.span`
+  color: #ff87ca;
+  font-weight: 700;
+  font-size: 1.2rem;
+`;
 
 const AddBtn = styled.button`
   display: none;

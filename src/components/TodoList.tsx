@@ -8,18 +8,14 @@ interface Props {
   task: string;
   setTodoList: (val: any) => void;
   setTask: (val: string) => void;
-  isCompleted: boolean;
 }
 
-export const TodoList = ({
-  todoList,
-  task,
-  setTodoList,
-  setTask,
-  isCompleted,
-}: Props) => {
+export const TodoList = ({ todoList, task, setTodoList, setTask }: Props) => {
   return (
     <TodoListBox>
+      {todoList.length === 0 && (
+        <EmptyBox>오늘의 Todo를 추가해주세요!</EmptyBox>
+      )}
       {todoList.map((todo, i) => {
         return (
           <Todo
@@ -36,4 +32,15 @@ export const TodoList = ({
 
 const TodoListBox = styled.ul`
   overflow: auto;
+  position: relative;
+`;
+
+const EmptyBox = styled.span`
+  /* display: inline-block; */
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 `;
