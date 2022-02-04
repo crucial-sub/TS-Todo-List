@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { ITask } from "../Interfaces";
+import { MdOutlineDeleteForever } from "react-icons/md";
 
 interface Props {
   todo: ITask;
@@ -22,6 +23,11 @@ export const Todo = ({ todo, todoList, setTodoList }: Props) => {
     todoList.splice(findId, 1, newTodo);
     setTodoList([...todoList]);
   };
+
+  const handleDelete = () => {
+    const newTodoList = todoList.filter((item) => item.id !== todo.id);
+    setTodoList([...newTodoList]);
+  };
   return (
     <TodoItem className={todo.isChecked ? "checked" : "noChecked"}>
       <TodoCheck
@@ -34,6 +40,7 @@ export const Todo = ({ todo, todoList, setTodoList }: Props) => {
       <TodoTask htmlFor={todo.id.toString()} isChecked={todo.isChecked}>
         {todo.taskName}
       </TodoTask>
+      <MdOutlineDeleteForever onClick={handleDelete} />
     </TodoItem>
   );
 };
@@ -43,6 +50,7 @@ const TodoItem = styled.li`
   flex-direction: row;
   margin: 5%;
   align-items: center;
+  position: relative;
 
   & > label {
     cursor: pointer;
@@ -60,6 +68,20 @@ const TodoItem = styled.li`
     text-decoration: line-through;
     opacity: 0.5;
   }
+
+  & > svg {
+    opacity: 0;
+    position: absolute;
+    color: #b585c7;
+    font-size: 2rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+
+  & > label:hover ~ svg,
+  svg:hover {
+    opacity: 1;
+  }
 `;
 
 const TodoCheck = styled.input`
@@ -71,6 +93,7 @@ const TodoCheck = styled.input`
 
 const TodoTask = styled.label<{ isChecked: boolean }>`
   font-size: 25px;
+  width: 100%;
   /* text-decoration: ${({ isChecked }) => isChecked && "line-through"};
   opacity: ${({ isChecked }) => isChecked && "0.5"}; */
 `;
