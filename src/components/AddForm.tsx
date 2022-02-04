@@ -7,9 +7,20 @@ interface Props {
   task: string;
   setTodoList: (val: any) => void;
   setTask: (val: string) => void;
+  visible: boolean;
+  setVisible: (val: boolean) => void;
+  handleVisible: () => void;
 }
 
-export const AddForm = ({ todoList, task, setTodoList, setTask }: Props) => {
+export const AddForm = ({
+  todoList,
+  task,
+  setTodoList,
+  setTask,
+  visible,
+  setVisible,
+  handleVisible,
+}: Props) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setTask(event.target.value);
   };
@@ -24,21 +35,42 @@ export const AddForm = ({ todoList, task, setTodoList, setTask }: Props) => {
   };
 
   return (
-    <FormBox>
+    <FormBox visible={visible}>
       <Form onSubmit={handleSubmit}>
         <AddInput
           onChange={handleChange}
           type="text"
-          placeholder="Please write down what to do."
+          placeholder="오늘의 Todo를 적어주세요 !"
           value={task}
         ></AddInput>
       </Form>
+      <CloseBtn onClick={handleVisible}>Close</CloseBtn>
     </FormBox>
   );
 };
 
-const FormBox = styled.div``;
+const FormBox = styled.div<{ visible: boolean }>`
+  display: flex;
+  width: ${({ visible }) => (visible ? "100%" : "0")};
+  height: 100%;
+  opacity: ${({ visible }) => (visible ? "1" : "0")};
+  visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
+  transition: all 0.3s;
+`;
 
-const Form = styled.form``;
+const Form = styled.form`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex: 1 0 70%;
+`;
 
-const AddInput = styled.input``;
+const AddInput = styled.input`
+  width: 100%;
+  text-align: center;
+`;
+
+const CloseBtn = styled.button`
+  width: 100%;
+  flex: 1 0 30%;
+`;

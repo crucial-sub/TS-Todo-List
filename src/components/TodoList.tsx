@@ -33,10 +33,10 @@ export const TodoList = ({ todoList, task, setTodoList, setTask }: Props) => {
 const TodoListBox = styled.ul`
   overflow: auto;
   position: relative;
+  border-bottom: 1px solid black;
 `;
 
 const EmptyBox = styled.span`
-  /* display: inline-block; */
   width: 100%;
   text-align: center;
   font-size: 1.5rem;

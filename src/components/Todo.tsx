@@ -44,6 +44,10 @@ const TodoItem = styled.li`
   margin: 5%;
   align-items: center;
 
+  & > label {
+    cursor: pointer;
+  }
+
   & > input:checked ~ label:nth-child(2)::after {
     content: "✔";
     font-size: 25px;
@@ -66,7 +70,6 @@ const TodoCheck = styled.input`
 `;
 
 const TodoTask = styled.label<{ isChecked: boolean }>`
-  width: 80%;
   font-size: 25px;
   /* text-decoration: ${({ isChecked }) => isChecked && "line-through"};
   opacity: ${({ isChecked }) => isChecked && "0.5"}; */
