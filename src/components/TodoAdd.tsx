@@ -90,7 +90,6 @@ const BtnLabel = styled.label<{ visible: boolean }>`
   cursor: pointer;
   flex: 1 0 30%;
   text-align: center;
-  color: black;
   color: ${({ visible }) => visible && "#ffffff"};
   transition: ${({ visible }) => (visible ? "0s" : "0.4s")};
   transition-timing-function: step-end;

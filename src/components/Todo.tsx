@@ -94,6 +94,7 @@ const TodoCheck = styled.input`
 const TodoTask = styled.label<{ isChecked: boolean }>`
   font-size: 25px;
   width: 100%;
+  color: #767676;
   /* text-decoration: ${({ isChecked }) => isChecked && "line-through"};
   opacity: ${({ isChecked }) => isChecked && "0.5"}; */
 `;

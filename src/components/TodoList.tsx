@@ -33,7 +33,7 @@ export const TodoList = ({ todoList, task, setTodoList, setTask }: Props) => {
 const TodoListBox = styled.ul`
   overflow: auto;
   position: relative;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #eb9845;
 `;
 
 const EmptyBox = styled.span`
